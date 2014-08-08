@@ -37,9 +37,10 @@ def svmCV(trainData, fold=2):
     scores = cv.cross_val_score(clf, trainData[:,1:14], trainData[:,LABEL])
     print scores
 
-trainData = loadTrainingData();
-print "Data Loaded"
-numRows = shape(trainData)[0]
-subsetData = trainData[0:int(numRows*0.1)]
-#[svmClassifier, predictions] = classifySVM(trainData, 0.1)
-svmCV(subsetData)
+if __name__ == '__main__':
+    trainData = loadTrainingData();
+    print "Data Loaded"
+    numRows = shape(trainData)[0]
+    subsetData = trainData[0:int(numRows*0.1)]
+    #[svmClassifier, predictions] = classifySVM(trainData, 0.1)
+    svmCV(subsetData)
