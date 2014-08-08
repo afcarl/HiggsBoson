@@ -28,5 +28,11 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+
 .DS_Store
+Data/Plots
+Data/Literature
+.RData
+.RHistory
 Data/
