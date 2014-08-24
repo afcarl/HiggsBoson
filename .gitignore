@@ -36,3 +36,7 @@ Data/Literature
 .RData
 .RHistory
 Data/
+MultiBoost-Build/
+Literature/
+*.csv
+*.arff
