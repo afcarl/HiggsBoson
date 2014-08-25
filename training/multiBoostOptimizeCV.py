@@ -4,24 +4,24 @@ import matplotlib.pyplot as plt
 TRAIN_RATIO = 0.9;
 
 
-all = list(csv.reader(open("../Data/training.csv","rb"), delimiter=','))    
-header = np.array(all[0][1:-2])
+raw = list(csv.reader(open("../Data/training.csv","rb"), delimiter=','))    
+header = np.array(raw[0][1:-2])
 
-xs = np.array([map(float, row[1:-2]) for row in all[1:]])
+xs = np.array([map(float, row[1:-2]) for row in raw[1:]])
 (numPoints,numFeatures) = xs.shape
 
-sSelector = np.array([row[-1] == 's' for row in all[1:]])
-bSelector = np.array([row[-1] == 'b' for row in all[1:]])
+sSelector = np.array([row[-1] == 's' for row in raw[1:]])
+bSelector = np.array([row[-1] == 'b' for row in raw[1:]])
 
-weights = np.array([float(row[-2]) for row in all[1:]])
-labels = np.array([row[-1] for row in all[1:]])
+weights = np.array([float(row[-2]) for row in raw[1:]])
+labels = np.array([row[-1] for row in raw[1:]])
 sumWeights = np.sum(weights)
 sumSWeights = np.sum(weights[sSelector])
 sumBWeights = np.sum(weights[bSelector])
 
-randomPermutation = random.sample(range(len(xs)), len(xs))
-np.savetxt("randomPermutation.csv",randomPermutation,fmt='%d',delimiter=',')
-#randomPermutation = np.array(map(int,np.array(list(csv.reader(open("randomPermutation.csv","rb"), delimiter=','))).flatten()))
+#randomPermutation = random.sample(range(len(xs)), len(xs))
+#np.savetxt("randomPermutation.csv",randomPermutation,fmt='%d',delimiter=',')
+randomPermutation = np.array(map(int,np.array(list(csv.reader(open("../Util/randomPermutation.csv","rb"), delimiter=','))).flatten()))
 
 numPointsTrain = int(numPoints*TRAIN_RATIO);
 numPointsValidation = numPoints - numPointsTrain
@@ -81,6 +81,10 @@ for tI in range(len(tIIs)):
         s -= weightsValidation[tIIs[tI]]
     else:
         b -= weightsValidation[tIIs[tI]]
+
+print "Final Value of Threshold"
+print threshold
+print ""
 
 ## AMS VS the rank        
 fig = plt.figure()
