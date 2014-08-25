@@ -1,7 +1,7 @@
 import csv
 import numpy as np
 
-threshold = 0.948925
+threshold = 1.19048
 testText = list(csv.reader(open("../Data/test.csv","rb"), delimiter=','))
 testIds = np.array([int(row[0]) for row in testText[1:]])
 xsTest = np.array([map(float, row[1:]) for row in testText[1:]])
